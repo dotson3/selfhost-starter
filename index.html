@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>dotsonia08 — Self-Hosted Homelab Tools</title>
+<style>
+  :root{
+    --bg:#0d1117; --bg2:#161b22; --card:#1c2230; --fg:#e6edf3; --muted:#8b949e;
+    --accent:#3fb950; --accent2:#58a6ff; --border:#30363d; --shadow:0 8px 30px rgba(0,0,0,.4);
+    --pay:#ffc439; --pay-fg:#111;
+  }
+  html[data-theme="light"]{
+    --bg:#f6f8fa; --bg2:#ffffff; --card:#ffffff; --fg:#1f2328; --muted:#656d76;
+    --accent:#1a7f37; --accent2:#0969da; --border:#d0d7de; --shadow:0 8px 30px rgba(0,0,0,.08);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",system-ui,sans-serif;
+    background:var(--bg);color:var(--fg);transition:background .3s,color .3s}
+  .wrap{max-width:880px;margin:0 auto;padding:24px}
+  header{display:flex;justify-content:space-between;align-items:center;padding:16px 0 8px}
+  .brand{font-weight:800;font-size:1.4rem;letter-spacing:-.02em}
+  .brand span{color:var(--accent)}
+  .toggle{cursor:pointer;border:1px solid var(--border);background:var(--bg2);color:var(--fg);
+    border-radius:999px;padding:8px 14px;font-size:.85rem;transition:.2s}
+  .toggle:hover{border-color:var(--accent2)}
+  .hero{text-align:center;padding:48px 16px 32px}
+  .hero h1{font-size:clamp(1.8rem,5vw,2.8rem);line-height:1.15;margin-bottom:14px;
+    background:linear-gradient(120deg,var(--accent),var(--accent2));-webkit-background-clip:text;
+    background-clip:text;-webkit-text-fill-color:transparent}
+  .hero p{color:var(--muted);max-width:560px;margin:0 auto;font-size:1.05rem}
+  .cards{display:grid;gap:18px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));margin:32px 0}
+  .card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:24px;
+    box-shadow:var(--shadow);transition:transform .2s,border-color .2s}
+  .card:hover{transform:translateY(-4px);border-color:var(--accent2)}
+  .card h3{font-size:1.15rem;margin-bottom:8px}
+  .card .price{font-weight:800;color:var(--accent);font-size:1.3rem;margin:8px 0}
+  .card .desc{color:var(--muted);font-size:.92rem;min-height:66px}
+  .btn{display:inline-block;margin-top:14px;padding:11px 20px;border-radius:10px;font-weight:700;
+    text-decoration:none;background:var(--accent);color:#fff;transition:.2s}
+  .btn:hover{opacity:.9}
+  .btn.alt{background:transparent;border:1px solid var(--accent2);color:var(--accent2)}
+  .feat{background:var(--bg2);border:1px solid var(--border);border-radius:16px;padding:28px;margin:24px 0}
+  .feat h2{font-size:1.3rem;margin-bottom:16px}
+  .feat ul{list-style:none;display:grid;gap:10px}
+  .feat li{padding-left:28px;position:relative;color:var(--fg)}
+  .feat li:before{content:"✓";position:absolute;left:0;color:var(--accent);font-weight:800}
+  .gh{text-align:center;padding:24px;background:var(--card);border:1px solid var(--border);
+    border-radius:16px;margin:24px 0}
+  .gh a{color:var(--accent2);font-weight:700;text-decoration:none}
+  .pay{text-align:center;background:var(--card);border:1px solid var(--border);border-radius:16px;
+    padding:32px;margin:24px 0}
+  .pay h2{font-size:1.3rem;margin-bottom:6px}
+  .pay p{color:var(--muted);font-size:.92rem;margin-bottom:18px}
+  .paybtn{display:inline-flex;align-items:center;gap:10px;background:var(--pay);color:var(--pay-fg);
+    font-weight:800;padding:14px 28px;border-radius:12px;text-decoration:none;font-size:1.05rem;
+    box-shadow:0 4px 14px rgba(255,196,57,.35);transition:.2s}
+  .paybtn:hover{transform:translateY(-2px)}
+  .paybtn small{font-weight:600;opacity:.8}
+  footer{text-align:center;color:var(--muted);font-size:.85rem;padding:32px 0 8px}
+  @media(max-width:520px){.hero{padding:32px 8px 20px}.wrap{padding:16px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="brand">dotson<span>ia</span>08</div>
+    <button class="toggle" id="themeBtn" onclick="toggleTheme()">🌙 Dark</button>
+  </header>
+
+  <section class="hero">
+    <h1>Self-Hosted Homelab &amp; Automation Starter Pack</h1>
+    <p>Four production-grade, zero-dependency Python scripts to turn a Raspberry Pi into a
+       private VPN, ad-blocker, and live monitor. No pip. No Flask. Just runs.</p>
+  </section>
+
+  <section class="cards">
+    <div class="card">
+      <h3>🛡️ Full Pack + Setup Guide</h3>
+      <div class="price">$19 <small style="color:var(--muted);font-weight:400">or pay what you want</small></div>
+      <div class="desc">All 4 scripts bundled + the "From Zero to VPN" written walkthrough.
+        Real, tested code — not a video you'll forget.</div>
+      <a class="btn" href="#pay">Get the pack →</a>
+    </div>
+    <div class="card">
+      <h3>🎁 Pi-hole Upgrader (FREE)</h3>
+      <div class="price">$0</div>
+      <div class="desc">pihole_blocklist.py — upgrades a basic Pi-hole into a privacy powerhouse
+        in one command. Genuinely useful on its own.</div>
+      <a class="btn alt" href="https://github.com/dotson3/selfhost-starter">Get it free →</a>
+    </div>
+  </section>
+
+  <section class="feat">
+    <h2>What's inside</h2>
+    <ul>
+      <li><b>pihole_blocklist.py</b> — pushes 25 hand-picked tracker domains to Pi-hole v6 + rebuilds gravity</li>
+      <li><b>dashboard.py</b> — live system monitor (CPU/mem/disk/temp) as JSON API + HTML page, no Flask</li>
+      <li><b>wg_peer.py</b> — onboards a phone to WireGuard in 30s (writes .conf, prints QR)</li>
+      <li><b>cron_task.py</b> — scaffolds correct systemd timers from a template</li>
+      <li>Every script commented line-by-line, self-documenting (<code>--help</code>)</li>
+      <li>Pure Python standard library — runs on stock Raspberry Pi OS / Ubuntu</li>
+    </ul>
+  </section>
+
+  <section class="gh">
+    <p>Prefer the source? All 4 scripts are free &amp; open on GitHub:</p>
+    <p style="margin-top:8px"><a href="https://github.com/dotson3/selfhost-starter">github.com/dotson3/selfhost-starter</a></p>
+  </section>
+
+  <section class="pay" id="pay">
+    <h2>Get the full pack</h2>
+    <p>Pay what you want via PayPal. After payment, you'll get the bundled ZIP + setup guide.</p>
+    <a class="paybtn" href="https://www.paypal.com/paypalme/ddotson321" target="_blank" rel="noopener">
+      ⚡ Pay with PayPal <small>(enter amount $19)</small>
+    </a>
+    <p style="margin-top:14px;font-size:.82rem">No account? Use the button above and enter $19 (or any amount you choose).
+       Then email your receipt to <b>dotson321@gmail.com</b> and I'll send the download link.</p>
+  </section>
+
+  <footer>
+    Built by dotsonia08 · Questions? The scripts are self-documenting.<br>
+    Maker of practical self-hosting tools.
+  </footer>
+</div>
+
+<script>
+  function toggleTheme(){
+    var cur=document.documentElement.getAttribute('data-theme');
+    var next=cur==='light'?'dark':'light';
+    document.documentElement.setAttribute('data-theme',next);
+    document.getElementById('themeBtn').textContent = next==='light'?'🌙 Dark':'☀️ Light';
+    try{localStorage.setItem('theme',next);}catch(e){}
+  }
+  (function(){
+    var saved='dark';
+    try{saved=localStorage.getItem('theme')||'dark';}catch(e){}
+    document.documentElement.setAttribute('data-theme',saved);
+    document.getElementById('themeBtn').textContent = saved==='light'?'🌙 Dark':'☀️ Light';
+  })();
+</script>
+</body>
+</html>
